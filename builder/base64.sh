@@ -1,0 +1,39 @@
+#!/bin/bash
+
+duckyPath=$(pwd)/src/ducky
+
+# File to base64 encode rootExec.py and runroot.sh and replace them in rubbyDucky.sh within a build folder
+rm -rf build
+mkdir build
+cd build
+
+
+base64 -w 0 $duckyPath/runroot.sh > runroot.txt
+base64 -w 0 $duckyPath/rootEXEC.py > py.txt
+
+cp $duckyPath/rubbyDucky.sh .
+# {RUNROOT_BASE64} in rubbyDucky.sh will be replaced with runroot.txt
+# {PY_BASE64} in rubbyDucky.sh will be replaced with py.txt
+
+sed -i "s/{RUNROOT_BASE64}/$(cat runroot.txt)/g" rubbyDucky.sh
+sed -i "s/{PY_BASE64}/$(cat py.txt)/g" rubbyDucky.sh
+
+echo "Created rubbyDucky.sh in build folder"
+
+echo "uploading to gist now"
+
+cp rubbyDucky.sh ../e3c7d56524bcba9a0eff319676611d5f
+cd ../e3c7d56524bcba9a0eff319676611d5f
+
+# # run git
+# git add .
+# git commit -m "Updated rubbyDucky.sh"
+
+# # increment revision number
+# revNum=$(cat ../builder/revisionNum.txt)
+# echo $((revNum+1)) > ../builder/revisionNum.txt
+
+# ssh-agent bash -c 'ssh-add ../rubbyducky; git push git@gist.github.com:e3c7d56524bcba9a0eff319676611d5f.git'
+
+# echo "uploaded to gist"
+
