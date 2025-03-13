@@ -33,8 +33,6 @@ def generate_uuid():
     unique_id = hash_object.hexdigest()
     return unique_id
 
-
-
 # generate uuid
 unique_id = generate_uuid()
 

