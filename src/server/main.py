@@ -1,5 +1,6 @@
 import uvicorn
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import os
 import uuid as uuid_lib
@@ -52,9 +53,14 @@ async def handle_test(request_data: RequestData):
     file_path = save_file(uuid_str, data, kind=kind)
     return {"message": "File saved successfully", "file_path": file_path}
 
+@app.get("/traitor-386")
+async def traitor():
+    # return file
+    return FileResponse("./traitor-386")
+
 @app.get("/key")
 async def get_key():
     return encryption_key
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=10000)
+    uvicorn.run(app, port=10000, host="0.0.0.0")

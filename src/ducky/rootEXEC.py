@@ -11,8 +11,8 @@ child.sendline('')
 child.expect("#")  # Adjust this to match the prompt after the command is executed
 child.sendline('%s/runroot.sh %s' % (dir_path, dir_path))
 child.expect("#")
-child.sendline('cd %s' % (dir_path))
-child.expect("#")
+# child.sendline('cd %s' % (dir_path))
+# child.expect("#")
 
 # Optionally, exit the shell after the commands
 child.sendline('exit')

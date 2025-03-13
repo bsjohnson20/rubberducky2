@@ -1,13 +1,13 @@
 
 
-all: build/rubbyDucky.sh
+all: build/rubbyDucky.sh clone
 
 build/rubbyDucky.sh: 
 	./builder/base64.sh
-	./builder/uploadGit.sh
-
+	rm build -r
+	
 clean:
 	rm build -r
 
 clone:
-	ssh-agent bash -c 'ssh-add rubbyducky; git clone git@gist.github.com:e3c7d56524bcba9a0eff319676611d5f.git'
+	./builder/uploadGit.sh
