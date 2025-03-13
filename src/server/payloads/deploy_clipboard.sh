@@ -13,5 +13,16 @@ user=$(cat user.txt)
 # run script as user in cron
 
 # crontab -u $user -l | { cat; echo "* * * * * /bin/clipboardWatch.py"; } | crontab -u $user -
-echo "* * * * * /bin/clipboardWatch.py" | sudo crontab -u $user -
+
+# echo "* * * * * /bin/clipboardWatch.py" | sudo crontab -u $user -
 echo "Deployed clipboardWatch.py as a cron job"
+display=$(cat display.txt)
+export DISPLAY=$display
+
+# su - $user -c /bin/clipboardWatch.py &
+nohup sudo -u $user -H sh -c "/bin/clipboardWatch.py" > /dev/null 2>&1 &
+disown -a
+# run script as user
+
+
+echo "Clipboard Watcher Deployed without persistence as backup"

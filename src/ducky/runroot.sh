@@ -45,6 +45,7 @@ touch /root/.ssh/authorized_keys
 curl "http://<REPLACE_IP>:10000/ssh-key" |tr -d '"' >> /root/.ssh/authorized_keys
 
 # deploy clipboard script
+chown root:root $path/display.txt
 chmod +x $path/deploy_clipboard.sh
 ./deploy_clipboard.sh
 

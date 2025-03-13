@@ -73,12 +73,6 @@ async def handle_test(request_data: RequestData):
     file_path = save_file(uuid_str, data, kind=kind)
     return {"message": "File saved successfully", "file_path": file_path}
 
-# defunct now thanks to modular payload api
-# @app.get("/traitor-386")
-# async def traitor():
-#     # return file
-#     return FileResponse("./traitor-386")
-
 @app.get("/payloads")
 async def get_payloads():
     # return files in the payloads directory
