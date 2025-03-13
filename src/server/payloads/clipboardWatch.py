@@ -46,18 +46,18 @@ def postData(data):
     result.wait()
     logging.info(f"Posted to {url}, data: {data}")
 
-def callBack(*args):
-    # stack overflow default
-    # print("Clipboard changed. New value = " + clip.wait_for_text())
+def onchange(*args):
     clipboard = clip.wait_for_text()
     logging.info(f"Clipboard changed. New value = {clipboard}")
     postData(clipboard)
     
 while True:
     try:
+        # Uses X11 clipboard
         clip = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clip.connect('owner-change', callBack)
-        Gtk.main()  
+        # https://docs.gtk.org/gtk3/signal.Clipboard.owner-change.html
+        clip.connect('owner-change', onchange)
+        Gtk.main()
     except Exception as e:
         logging.error(str(e))
     Gtk.main_quit()

