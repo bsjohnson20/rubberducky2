@@ -1,0 +1,15 @@
+FROM ubuntu:focal
+
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    python3-setuptools \
+    && pip3 install fastapi uvicorn
+
+COPY ./docker_server /app
+WORKDIR /app
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "10000"]

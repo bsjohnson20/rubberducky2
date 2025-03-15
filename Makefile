@@ -12,6 +12,10 @@ run_server:
 run_tmux:
 	./builder/tmux.sh
 
+.PHONY: docker
+docker:
+	cd docker && ./run.sh
+
 clean:
 	rm build -r
 	rm build_server -r

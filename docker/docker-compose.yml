@@ -1,0 +1,8 @@
+name: fastapi-server
+services:
+  app:
+    build: .
+    volumes:
+      - ./payloads:/app/payloads
+    ports:
+      - "10000:10000"
