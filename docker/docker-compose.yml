@@ -4,5 +4,6 @@ services:
     build: .
     volumes:
       - ./payloads:/app/payloads
+      - ./files:/app/files
     ports:
       - "10000:10000"

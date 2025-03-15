@@ -19,3 +19,4 @@ build_server/attack
 build_server/*
 docker/docker_server/
 docker/payloads/
+docker/files
