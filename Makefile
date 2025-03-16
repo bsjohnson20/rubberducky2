@@ -1,4 +1,6 @@
-all: build/rubbyDucky.sh clone build_server run_tmux
+all: build_server build/rubbyDucky.sh clone docker run_tmux
+
+
 
 build/rubbyDucky.sh: 
 	./builder/base64.sh
@@ -17,6 +19,7 @@ docker:
 	cd docker && ./run.sh
 
 clean:
+	rm docker/docker_server -r
 	rm build -r
 	rm build_server -r
 

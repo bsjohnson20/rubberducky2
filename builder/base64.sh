@@ -32,8 +32,12 @@ echo "Created rubbyDucky.sh in build folder"
 
 echo "uploading to gist now"
 
-cp rubbyDucky.sh ../e3c7d56524bcba9a0eff319676611d5f
+cp rubbyDucky.sh ../build_server/payloads
+
+
+cp duckyLauncher.sh ../e3c7d56524bcba9a0eff319676611d5f/rubbyDucky.sh
 cd ../e3c7d56524bcba9a0eff319676611d5f
+
 
 # # run git
 # git add .

