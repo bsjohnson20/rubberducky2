@@ -67,7 +67,3 @@ Fastapi servers exfiltration endpoints as well as payload downloads
     - Galvin, L. (2025) liamg/traitor. Go [online]. Available from: https://github.com/liamg/traitor [Accessed 16 March 2025].
 FastAPI server import for malicious server.
     - Ramírez, S. (2025) FastAPI. Python [online]. Available from: https://github.com/fastapi/fastapi [Accessed 17 March 2025].
-
-
-
-# TODO ADD REFERENCE FOR FASTAPI
