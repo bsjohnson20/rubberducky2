@@ -5,6 +5,7 @@ description = "Malicious fastapi server"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "fastapi[standard]>=0.115.11",
+    "cryptography>=44.0.2",
+    "fastapi[standard]>=0.115.12",
     "requests>=2.21.0",
 ]

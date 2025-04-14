@@ -2,15 +2,17 @@
 
 
 
-# Rubber Ducky Payload
+# Rubber Ducky SCN Assignment
 =====================
 
-A payload for a Rubber Ducky USB device that executes a script from a GitHub Gist, which is generated using a Makefile.
+Rubber Ducky script and it's payloads for SCN
+
+
 
 ## Overview
 ------------
 
-This project uses a Makefile to generate a script for the Rubber Ducky USB device. The script is then executed by the device, which downloads additional payloads from a FastAPI server.
+A project designed to not only execute code on a system, but exploit for root, utilise root to leave a backdoor and exfiltrate data out. Purely designed as a demo project, with no actual malicious intent other than against the VMs to test against.
 
 ## Files
 --------
@@ -24,6 +26,8 @@ This project uses a Makefile to generate a script for the Rubber Ducky USB devic
 
 ## UV requirements
 * `pyproject.toml: requirements used for the fastapi server, you can use the docker container instead to have everything precompiled
+
+Use: ```uv sync``` to setup package requirements
 
 ## Usage
 -----
@@ -50,20 +54,31 @@ Fastapi servers exfiltration endpoints as well as payload downloads
 - -  Non-Standard Port (10000 http) https://attack.mitre.org/techniques/T1571/
 - DuckyUSB: 
 - - Replication Through Removable Media https://attack.mitre.org/techniques/T1091/
+- RubbyDucky.sh
+- -  https://attack.mitre.org/techniques/T1132/  Data Encoding - Standard Encoding 
+- - - Uses Base64 decoding on two payloads
+- Traitor: 
+- - Exploitation for Privilege Escalation https://attack.mitre.org/techniques/T1068/
+- - CVE: Dirty Pipe https://nvd.nist.gov/vuln/detail/cve-2022-0847
 - runroot.sh 
 - - Account Manipulation: SSH Authorized Keys https://attack.mitre.org/techniques/T1098/004
+- - Command and Scripting Interpreter: Unix Shell https://attack.mitre.org/techniques/T1059/004/
+- - Scheduled Task/Job: Cron https://attack.mitre.org/techniques/T1053/003/
+- - Indicator Removal: File Deletion https://attack.mitre.org/techniques/T1070/004/
 - clipboardWatch.py:
 - - Clipboard Data https://attack.mitre.org/techniques/T1115/
+- - Could have had CRON job but difficult to setup with DISPLAY and GTK.
 - analyser.py:
 - - Automated Collection https://attack.mitre.org/techniques/T1119/
 - - System Information Discovery https://attack.mitre.org/techniques/T1082/
-- Traitor: 
-- - Exploitation for Privilege Escalation https://attack.mitre.org/techniques/T1068/
-
+- - Command and Scripting Interpreter: Python https://attack.mitre.org/techniques/T1059/006/
 
 ## Projects used
 
 - Traitor tool used for automated root execution.
     - Galvin, L. (2025) liamg/traitor. Go [online]. Available from: https://github.com/liamg/traitor [Accessed 16 March 2025].
-FastAPI server import for malicious server.
+- FastAPI server import for malicious server.
     - Ramírez, S. (2025) FastAPI. Python [online]. Available from: https://github.com/fastapi/fastapi [Accessed 17 March 2025].
+- PyExpect - Used for interfacing with the Traitor root escalation
+    - Anon. (2025). Python [online]. Available from: https://github.com/pexpect/pexpect [Accessed 16 March 2025].
+

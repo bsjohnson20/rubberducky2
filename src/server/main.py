@@ -1,9 +1,8 @@
 import uvicorn
-from fastapi import FastAPI, File, Request
+from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import os
-import uuid as uuid_lib
 from datetime import datetime
 import shutil
 import io
@@ -27,7 +26,6 @@ logger.setLevel(logging.DEBUG)
 # database
 db = SQL()
 
-
 import signal
 def exit_gracefully(*args):
     print("exiting")
@@ -41,7 +39,6 @@ class RequestData(BaseModel):
     uuid: str
     data: str  # assuming the raw_file will be a base64 encoded string
     kind: str
-    
 class HostData(BaseModel):
     uuid: str
 
@@ -114,7 +111,6 @@ async def get_key():
 if __name__ == "__main__":
     # handle ctrl+c
     signal.signal(signal.SIGINT, exit_gracefully)
-    
     uvicorn.run(app, port=10000, host="0.0.0.0")
     
     

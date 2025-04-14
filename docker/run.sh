@@ -6,8 +6,10 @@
 rm -rf docker_server
 cp ../build_server ./docker_server -r
 
+mkdir files
+
 # Generate dockerfile
-docker build -t rubbyducky:latest .
+docker build -t rubbyducky:latest . --no-cache
 
 
 # Copy payloads

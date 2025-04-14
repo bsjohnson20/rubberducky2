@@ -1,10 +1,10 @@
-all: build_server build/rubbyDucky.sh clone docker run_tmux
+all: build_server build/rubbyDucky.sh clone  run_tmux
 
 
 
-build/rubbyDucky.sh: 
+build/rubbyDucky.sh:
 	./builder/base64.sh
-	
+
 build_server:
 	./builder/build_server.sh
 
@@ -25,5 +25,3 @@ clean:
 
 clone:
 	./builder/uploadGit.sh
-
-
