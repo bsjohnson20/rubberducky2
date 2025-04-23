@@ -37,7 +37,7 @@ export DISPLAY=":0"
 user=$(cat user.txt)
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(user)/bus"
 # Ideally it'd have changed the background immediately like the user running it, but doesn't
-gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/cyber-desktop-code-unlocked.png
+su $user -c 'gsettings set org.gnome.desktop.background picture-uri "file:///usr/share/backgrounds/cyber-desktop-code-unlocked.png"'
 
 # old code tried
 # sudo -u $user dbus-launch --exit-with-session gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/cyber-desktop-code-unlocked.png    

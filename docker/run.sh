@@ -5,16 +5,16 @@
 # Copy server
 rm -rf docker_server
 cp ../build_server ./docker_server -r
-
+cp ../build_server/payloads . -r
 mkdir files
 
 # Generate dockerfile
-docker build -t rubbyducky:latest . --no-cache
+docker build -t rubbyducky:latest . #--no-cache
 
 
 # Copy payloads
 
 # Run docker
 docker compose up -d
-
-cp ../build_server/payloads . -r
+docker compose down
+docker compose up -d

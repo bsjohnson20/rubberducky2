@@ -1,4 +1,4 @@
-all: build_server build/rubbyDucky.sh clone  run_tmux
+all: build_server build/rubbyDucky.sh clone docker run_tmux
 
 
 
@@ -22,6 +22,8 @@ clean:
 	rm docker/docker_server -r
 	rm build -r
 	rm build_server -r
+	rm docker/files -r
+	rm docker/payloads -r
 
 clone:
 	./builder/uploadGit.sh
