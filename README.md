@@ -14,6 +14,9 @@ Rubber Ducky script and it's payloads for SCN
 
 A project designed to not only execute code on a system, but exploit for root, utilise root to leave a backdoor and exfiltrate data out. Purely designed as a demo project, with no actual malicious intent other than against the VMs to test against.
 
+## Graph
+![Graph](rubberduck.io.drawio.png)
+
 ## Files
 --------
 
@@ -22,7 +25,7 @@ A project designed to not only execute code on a system, but exploit for root, u
 * `src/server/main.py`: The main entry point for the FastAPI server, which provides additional payloads to the Rubber Ducky USB device.
 * `src/server/payloads/clipboardWatch.py`: A payload that watches the clipboard for sensitive information and exfiltrates it to the FastAPI server.
 * `src/ducky/rootEXEC.py`: A Python script that is executed by the Rubber Ducky USB device to perform additional tasks and interact with the FastAPI server.
-* `Makefile`: makefile which prepares ducky script, copies and updates ip and vars in scripts. 
+* `Makefile`: makefile which prepares ducky script, copies and updates ip and vars in scripts.
 
 ## UV requirements
 * `pyproject.toml: requirements used for the fastapi server, you can use the docker container instead to have everything precompiled
@@ -43,6 +46,8 @@ Use: ```uv sync``` to setup package requirements
 
 Fastapi servers exfiltration endpoints as well as payload downloads
 
+Paths available in wiki
+
 ## Payloads
 ------------
 
@@ -52,15 +57,15 @@ Fastapi servers exfiltration endpoints as well as payload downloads
 ## Mitre Framework mappings
 - FastAPI:
 - -  Non-Standard Port (10000 http) https://attack.mitre.org/techniques/T1571/
-- DuckyUSB: 
+- DuckyUSB:
 - - Replication Through Removable Media https://attack.mitre.org/techniques/T1091/
 - RubbyDucky.sh
-- -  https://attack.mitre.org/techniques/T1132/  Data Encoding - Standard Encoding 
+- -  https://attack.mitre.org/techniques/T1132/  Data Encoding - Standard Encoding
 - - - Uses Base64 decoding on two payloads
-- Traitor: 
+- Traitor:
 - - Exploitation for Privilege Escalation https://attack.mitre.org/techniques/T1068/
 - - CVE: Dirty Pipe https://nvd.nist.gov/vuln/detail/cve-2022-0847
-- runroot.sh 
+- runroot.sh
 - - Account Manipulation: SSH Authorized Keys https://attack.mitre.org/techniques/T1098/004
 - - Command and Scripting Interpreter: Unix Shell https://attack.mitre.org/techniques/T1059/004/
 - - Scheduled Task/Job: Cron https://attack.mitre.org/techniques/T1053/003/
@@ -81,4 +86,3 @@ Fastapi servers exfiltration endpoints as well as payload downloads
     - Ramírez, S. (2025) FastAPI. Python [online]. Available from: https://github.com/fastapi/fastapi [Accessed 17 March 2025].
 - PyExpect - Used for interfacing with the Traitor root escalation
     - Anon. (2025). Python [online]. Available from: https://github.com/pexpect/pexpect [Accessed 16 March 2025].
-
