@@ -2,12 +2,12 @@
 
 
 
-# Rubber Ducky SCN Assignment Luna J
+# Rubber Ducky UNI Assignment
 =====================
 
 Rubber Ducky script and it's payloads for SCN
 
-23008809
+
 
 ## Overview
 ------------
